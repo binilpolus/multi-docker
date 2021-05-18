@@ -11,14 +11,14 @@ script:
   - docker run -e CI=true binil/react-test npm test
 
 after_success:
-  - docker build -t binil/multi-client ./client
-  - docker build -t binil/multi-nginx ./nginx
-  - docker build -t binil/multi-server ./server
-  - docker build -t binil/multi-worker ./worker
+  - docker build -t binilbpx/multi-client ./client
+  - docker build -t binilbpx/multi-nginx ./nginx
+  - docker build -t binilbpx/multi-server ./server
+  - docker build -t binilbpx/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
   - docker push binilbpx/multi-client
   - docker push binilbpx/multi-nginx
   - docker push binilbpx/multi-server
-  - docker push binil/multi-worker
+  - docker push binilbpx/multi-worker
